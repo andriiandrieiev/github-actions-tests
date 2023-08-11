@@ -20,6 +20,7 @@ jobs:
       - run: |
           echo TEST > test.txt
           echo $minisign_key
+          echo TEST
 
       # - uses: actions/upload-artifact@v3
       #   with:
