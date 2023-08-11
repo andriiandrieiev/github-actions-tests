@@ -23,7 +23,7 @@ jobs:
           echo $minisign_key >> minisign.key
           shasum minisign.key
           echo $minisign_password | $GITHUB_WORKSPACE/bin/minisign -s minisign.key -Sm test.txt
-          $GITHUB_WORKSPACE/bin/minisign -Vm test.txt -x test.txt.minisig -p $GITHUB_WORKSPACE/minisig.pub
+          $GITHUB_WORKSPACE/bin/minisign -Vm test.txt -x test.txt.minisig -p $GITHUB_WORKSPACE/minisign.pub
 
       - uses: actions/upload-artifact@v3
         with:
