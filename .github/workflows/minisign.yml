@@ -18,11 +18,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: |
-          echo TEST > test.txt
-          echo $minisign_key > minisign.key
-          echo '$minisign_password' | $GITHUB_WORKSPACE/bin/minisign -s minisign.key -Sm test.txt 
+          echo TEST > ~/test.txt
+          echo $minisign_key > ~/minisign.key
+          echo $minisign_password | $GITHUB_WORKSPACE/bin/minisign -s ~/minisign.key -Sm ~/test.txt 
 
       - uses: actions/upload-artifact@v3
         with:
           name: test.txt.minisig
-          path: test.txt.minisig
+          path: ~/test.txt.minisig
