@@ -17,10 +17,14 @@ jobs:
           echo TEST > ./test.txt
 
       - uses: thomasdesr/minisign-action@v1
+        if: always()
         with:
           args: -Sm ./test.txt
           minisign_key: ${{ secrets.minisign_key }}
           password: ${{ secrets.minisign_password }}
+
+      - run: |
+          cat ~/.minisign/minisign.key
 
       - uses: actions/upload-artifact@v3
         with:
