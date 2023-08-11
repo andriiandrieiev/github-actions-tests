@@ -22,7 +22,8 @@ jobs:
           echo 'untrusted comment: minisign encrypted secret key' > minisign.key
           echo $minisign_key >> minisign.key
           shasum minisign.key
-          echo $minisign_password | $GITHUB_WORKSPACE/bin/minisign -s minisign.key -Sm test.txt 
+          echo $minisign_password | $GITHUB_WORKSPACE/bin/minisign -s minisign.key -Sm test.txt
+          $GITHUB_WORKSPACE/bin/minisign -Vm test.txt -p test.txt.minisig
 
       - uses: actions/upload-artifact@v3
         with:
