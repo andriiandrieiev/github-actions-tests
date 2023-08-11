@@ -1,0 +1,28 @@
+name: Minisign test
+
+on:
+  push:
+
+  workflow_dispatch:
+
+jobs:
+  minisign-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - run: |
+          echo TEST > ./test.txt
+
+      - uses: thomasdesr/minisign-action@v1
+        with:
+          args: -Sm ./test.txt
+          minisign_key: ${{ secrets.minisign_key }}
+          password: ${{ secrets.minisign_password }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test.txt.monisig
+          path: ./test.txt.minisig
