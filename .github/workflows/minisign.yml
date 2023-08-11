@@ -5,6 +5,10 @@ on:
 
   workflow_dispatch:
 
+env:
+  minisign_key: ${{ secrets.minisign_key }}
+  minisign_password: ${{ secrets.minisign_password }}
+
 jobs:
   minisign-test:
     runs-on: ubuntu-latest
@@ -28,5 +32,5 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: test.txt.monisig
+          name: test.txt.minisig
           path: test.txt.minisig
