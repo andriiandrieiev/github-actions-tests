@@ -20,7 +20,9 @@ jobs:
       - run: |
           echo TEST > test.txt
           echo $minisign_key > minisign.key
-          echo '$minisign_password' | $GITHUB_WORKSPACE/bin/minisign -Sm test.txt -s minisign.key
+          pwd
+          cat minisign.key
+          echo '$minisign_password' | $GITHUB_WORKSPACE/bin/minisign -s minisign.key -Sm test.txt 
 
       - uses: actions/upload-artifact@v3
         with:
