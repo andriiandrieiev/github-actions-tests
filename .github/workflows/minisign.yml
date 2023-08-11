@@ -29,3 +29,8 @@ jobs:
         with:
           name: test.txt.minisig
           path: test.txt.minisig
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test.txt
+          path: test.txt
