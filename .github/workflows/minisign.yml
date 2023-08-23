@@ -43,4 +43,4 @@ jobs:
         run: |
           echo "Value of release_urls: $release_urls"
         env:
-          release_urls: ${{ fromJSON(steps.<step-id>.outputs.assets)[0].browser_download_url }}
+          release_urls: ${{ fromJSON(steps.release.outputs.assets)[0].browser_download_url }}
