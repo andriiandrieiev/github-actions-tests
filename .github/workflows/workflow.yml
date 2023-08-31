@@ -42,4 +42,4 @@ jobs:
           scp: |
             './vyos-$VYOS_VERSION-amd64.iso' => ~/vyos-build/build/live-image-amd64.hybrid.iso
           last_ssh: |
-            docker run --rm -it --privileged -v ~/vyos-build:/vyos -w /vyos vyos/vyos-build:current sudo make testc
+            docker run --rm --privileged -v ~/vyos-build:/vyos -w /vyos vyos/vyos-build:current sudo make testc
