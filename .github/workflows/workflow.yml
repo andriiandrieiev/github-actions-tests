@@ -40,6 +40,8 @@ jobs:
             git clone -b current --single-branch https://github.com/vyos/vyos-build
             mkdir -p ~/vyos-build/build/
           scp: |
-            './vyos-$VYOS_VERSION-amd64.iso' => ~/vyos-build/build/live-image-amd64.hybrid.iso
+            './vyos-$VYOS_VERSION-amd64.iso' => ~/vyos-build/build/
           last_ssh: |
+            mv ~/vyos-build/build/vyos-$VYOS_VERSION-amd64.iso ~/vyos-build/build/live-image-amd64.hybrid.iso
             docker run --rm --privileged -v ~/vyos-build:/vyos -w /vyos vyos/vyos-build:current sudo make testc
+            rm -rf ~/vyos-build || true
