@@ -36,8 +36,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           connect_timeout: 10s
           first_ssh: |
-            docker ps
+            rm -rf ~/vyos-build || true
+            git clone -b current --single-branch https://github.com/vyos/vyos-build
+            mkdir -p ~/vyos-build/build/
           scp: |
-            './vyos-$VYOS_VERSION-amd64.iso' => /tmp/
+            './vyos-$VYOS_VERSION-amd64.iso' => ~/vyos-build/build/live-image-amd64.hybrid.iso
           last_ssh: |
-            cat /tmp/vyos-$VYOS_VERSION-amd64.iso
+            docker run --rm -it --privileged -v ~/vyos-build:/vyos -w /vyos vyos/vyos-build:current sudo make testc
