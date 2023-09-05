@@ -8,18 +8,16 @@ jobs:
   caller_workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
 
       - name: Simple Echo
         run: |
-          pwd
-          ls -al
+          git clone https://github.com/vyos/community.vyos.net.git .
 
-  # call-workflow-passing-data:
-  #   needs: caller_workflow
-  #   uses: vyos/community.vyos.net/.github/workflows/main.yml@main
-  #   secrets:
-  #      NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
-  #      NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-  #      SOUPAULT_PROFILE: ${{ secrets.SOUPAULT_PROFILE }}
-  #      GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+  call-workflow-passing-data:
+    needs: caller_workflow
+    uses: vyos/community.vyos.net/.github/workflows/main.yml@main
+    secrets:
+       NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
+       NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+       SOUPAULT_PROFILE: ${{ secrets.SOUPAULT_PROFILE }}
+       GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
