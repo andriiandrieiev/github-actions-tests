@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: Simple Echo
         run: |
-          echo "Caller workflow echo #1!"
+          echo "Caller workflow echo!"
 
-      - name: Simple Echo
-        run: |
-          echo "Caller workflow echo #2!"
+  call-workflow-passing-data:
+    uses: andriiandrieiev/github-actions-tests/.github/workflows/workflow.yml@main
