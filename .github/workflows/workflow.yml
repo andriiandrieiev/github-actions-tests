@@ -13,4 +13,4 @@ jobs:
           echo "Caller workflow echo!"
 
   call-workflow-passing-data:
-    uses: andriiandrieiev/github-actions-tests/.github/workflows/workflow.yml@main
+    uses: andriiandrieiev/github-actions-tests2/.github/workflows/workflow.yml@main
