@@ -11,7 +11,6 @@ jobs:
       - name: Simple Echo
         run: |
           echo "Caller workflow echo!"
-          sleep 60
 
   call-workflow-passing-data:
     needs: caller_workflow
