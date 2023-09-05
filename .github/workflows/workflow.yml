@@ -15,4 +15,8 @@ jobs:
   call-workflow-passing-data:
     needs: caller_workflow
     uses: vyos/community.vyos.net/.github/workflows/main.yml@main
-    secrets: inherit
+    secrets:
+       NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
+       NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+       SOUPAULT_PROFILE: ${{ secrets.SOUPAULT_PROFILE }}
+       GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
