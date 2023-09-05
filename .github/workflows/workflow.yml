@@ -14,7 +14,7 @@ jobs:
   #         git clone https://github.com/vyos/community.vyos.net.git .
 
   call-workflow-passing-data:
-    needs: caller_workflow
+    # needs: caller_workflow
     uses: vyos/community.vyos.net/.github/workflows/main.yml@main
     with:
       repository: vyos/community.vyos.net
