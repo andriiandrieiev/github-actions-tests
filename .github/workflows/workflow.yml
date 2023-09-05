@@ -14,5 +14,5 @@ jobs:
 
   call-workflow-passing-data:
     needs: caller_workflow
-    uses: andriiandrieiev/github-actions-tests2/.github/workflows/workflow.yml@main
+    uses: vyos/community.vyos.net/.github/workflows/main.yml@main
     secrets: inherit
