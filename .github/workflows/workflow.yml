@@ -16,10 +16,6 @@ jobs:
   call-workflow-passing-data:
     # needs: caller_workflow
     uses: vyos/community.vyos.net/.github/workflows/main.yml@main
-    with:
-      repository: vyos/community.vyos.net
-      token: ${{ secrets.GH_ACCESS_TOKEN }}
-      path: ./
     secrets:
        NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
        NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
