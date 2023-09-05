@@ -1,47 +1,17 @@
-name: Minisign test
+name: Caller workflow
 
 on:
+  workflow_dispatch:
   push:
 
-  workflow_dispatch:
-
-env:
-  GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-
 jobs:
-  minisign-test:
+  called_workflow:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-
-      - name: Set VyOS version
-        id: set_vyos_version
+      - name: Simple Echo
         run: |
-          echo "VYOS_VERSION=1.4-rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
+          echo "Caller workflow echo #1!"
 
-      - uses: actions/checkout@v3
-
-      - run: |
-          echo $VYOS_VERSION > vyos-$VYOS_VERSION-amd64.iso
-
-      - name: Check ISO
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        env:
-          VYOS_VERSION: ${{ env.VYOS_VERSION }}
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
-          connect_timeout: 10s
-          first_ssh: |
-            rm -rf ~/vyos-build || true
-            git clone -b current --single-branch https://github.com/vyos/vyos-build
-            mkdir -p ~/vyos-build/build/
-          scp: |
-            './vyos-$VYOS_VERSION-amd64.iso' => ~/vyos-build/build/
-          last_ssh: |
-            mv ~/vyos-build/build/vyos-$VYOS_VERSION-amd64.iso ~/vyos-build/build/live-image-amd64.hybrid.iso
-            docker run --rm --privileged -v ~/vyos-build:/vyos -w /vyos vyos/vyos-build:current sudo make testc
-            rm -rf ~/vyos-build || true
+      - name: Simple Echo
+        run: |
+          echo "Caller workflow echo #2!"
