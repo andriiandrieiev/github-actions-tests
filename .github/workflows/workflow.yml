@@ -14,4 +14,5 @@ jobs:
           sleep 60
 
   call-workflow-passing-data:
+    needs: caller_workflow
     uses: andriiandrieiev/github-actions-tests2/.github/workflows/workflow.yml@main
