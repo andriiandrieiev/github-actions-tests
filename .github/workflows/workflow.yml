@@ -1,32 +1,22 @@
-name: Caller workflow
+name: Fail test workflow
 
 on:
   workflow_dispatch:
   push:
 
 jobs:
-  caller_workflow:
+  fail_test_workflow:
     runs-on: ubuntu-latest
     steps:
 
-
-      - name: touch test.txt
+      - name: Task 1
         run: |
-          echo BLABLA > ./test.txt
+          echo "Task 1"
 
-      - name: Run SSH test
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
-          connect_timeout: 10s
-          first_ssh: |
-            whoami
-            echo LALALA_1
-          scp: |
-            './test.txt' => '~/'
-          last_ssh: |
-            docker run --rm vyos/vyos-build:current exit 1;
-            echo LALALA_2 || true
+      - name: Task 2
+        run: |
+          echo "Task 2"
+
+      - name: Task 3
+        run: |
+          echo "Task 3"
