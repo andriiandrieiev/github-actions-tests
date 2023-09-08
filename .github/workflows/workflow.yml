@@ -28,5 +28,5 @@ jobs:
           scp: |
             './test.txt' => '~/'
           last_ssh: |
-            docker run --rm vyos/vyos-build:current exit 1
+            docker run --rm vyos/vyos-build:current exit 1;
             echo LALALA_2 || true
