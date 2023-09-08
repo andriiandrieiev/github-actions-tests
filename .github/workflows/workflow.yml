@@ -16,7 +16,13 @@ jobs:
       - name: Task 2
         run: |
           echo "Task 2"
+          exit 2
 
       - name: Task 3
         run: |
           echo "Task 3"
+
+      - name: Send Slack notification on fail
+        if: failure()
+        run: |
+          echo "FAILED"
