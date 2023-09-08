@@ -9,15 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Simple Echo
-        run: |
-          echo TEST
 
-  call-workflow-passing-data:
-    needs: caller_workflow
-    uses: vyos/community.vyos.net/.github/workflows/main.yml@production
-    secrets:
-       NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
-       NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-       SOUPAULT_PROFILE: ${{ secrets.SOUPAULT_PROFILE }}
-       GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+      - name: touch test.txt
+        run: |
+          echo BLABLA test.txt
+
+      - name: Run SSH test
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          connect_timeout: 10s
+          first_ssh: |
+            whoami
+          scp: |
+            './test.txt' => '~/test.txt'
+          last_ssh: |
+            cat test.txt
