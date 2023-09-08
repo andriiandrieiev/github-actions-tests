@@ -5,16 +5,16 @@ on:
   push:
 
 jobs:
-  # caller_workflow:
-  #   runs-on: ubuntu-latest
-  #   steps:
+  caller_workflow:
+    runs-on: ubuntu-latest
+    steps:
 
-  #     - name: Simple Echo
-  #       run: |
-  #         git clone https://github.com/vyos/community.vyos.net.git .
+      - name: Simple Echo
+        run: |
+          echo TEST
 
   call-workflow-passing-data:
-    # needs: caller_workflow
+    needs: caller_workflow
     uses: vyos/community.vyos.net/.github/workflows/main.yml@production
     secrets:
        NETLIFY_SITE_NAME: ${{ secrets.NETLIFY_SITE_NAME }}
