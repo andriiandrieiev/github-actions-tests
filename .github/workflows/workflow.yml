@@ -27,4 +27,4 @@ jobs:
           scp: |
             './test.txt' => '~/'
           last_ssh: |
-            cat test.txt
+            cat ~/test.txt
