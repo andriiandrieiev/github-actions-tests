@@ -12,8 +12,9 @@ jobs:
 
       - name: touch test.txt
         run: |
+          pwd
           echo BLABLA ./test.txt
-          cat test.txt
+          cat ./test.txt
 
       - name: Run SSH test
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
