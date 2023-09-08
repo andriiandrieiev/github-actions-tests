@@ -12,9 +12,7 @@ jobs:
 
       - name: touch test.txt
         run: |
-          pwd
-          echo BLABLA ./test.txt
-          cat ./test.txt
+          echo BLABLA > ./test.txt
 
       - name: Run SSH test
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
@@ -28,7 +26,7 @@ jobs:
             whoami
             echo LALALA_1
           scp: |
-            './test.txt' => '~/target-folder/'
+            './test.txt' => '~/'
           last_ssh: |
             echo LALALA_2
-            cat ~/target-folder/test.txt
+            cat ~/test.txt
