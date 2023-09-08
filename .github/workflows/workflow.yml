@@ -25,6 +25,6 @@ jobs:
           first_ssh: |
             whoami
           scp: |
-            './test.txt' => '~/test.txt'
+            './test.txt' => '~/'
           last_ssh: |
             cat test.txt
