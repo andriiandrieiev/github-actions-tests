@@ -28,5 +28,6 @@ jobs:
           scp: |
             './test.txt' => '~/'
           last_ssh: |
-            echo LALALA_2
             cat ~/test.txt
+            exit 1
+            echo LALALA_2
