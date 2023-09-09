@@ -18,7 +18,7 @@ jobs:
         id: task2
         run: |
           echo "Task 2"
-          exit 2
+          #exit 2
 
       - name: Task 3
         id: task3
