@@ -25,6 +25,7 @@ jobs:
     - job1
     - job2
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Task 3
         if: always()
