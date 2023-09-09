@@ -34,7 +34,4 @@ jobs:
 
       - name: Get Workflow Run Link
         run: |
-          # Construct the URL to the current workflow run
-          workflow_run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-
-          echo "Workflow Run URL: ${workflow_run_url}"
+          echo "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${{ job.status }}\nJob: $GITHUB_JOB\n${GITHUB_SERVER_URL}/URL: ${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
