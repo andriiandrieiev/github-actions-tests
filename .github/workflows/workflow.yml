@@ -10,19 +10,23 @@ jobs:
     steps:
 
       - name: Task 1
+        id: task1
         run: |
           echo "Task 1"
 
       - name: Task 2
+        id: task2
         run: |
           echo "Task 2"
           exit 2
 
       - name: Task 3
+        id: task3
         run: |
           echo "Task 3"
 
-      - name: Send Slack notification on fail
-        if: failure()
+      - name: Send notification on fail
+        id: notification
+        if: steps.task2.outcome == 'failure'
         run: |
           echo "FAILED"
