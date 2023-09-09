@@ -17,6 +17,7 @@ jobs:
       - name: Task 2
         id: task2
         run: |
+          echo "::set-output name=my_output::This is the output of Task 2"
           echo "Task 2"
           echo "Task 2"
           echo "Task 2"
@@ -36,4 +37,4 @@ jobs:
         run: |
           echo "$OUTPUT"
         env:
-          OUTPUT: ${{ steps.task2.outputs }}
+          OUTPUT: ${{ steps.task2.outputs.my_output }}
