@@ -31,3 +31,10 @@ jobs:
           echo "$OUTPUT"
         env:
           OUTPUT: ${{ steps.task2.outputs }}
+
+      - name: Get Workflow Run Link
+        run: |
+          # Construct the URL to the current workflow run
+          workflow_run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+          echo "Workflow Run URL: ${workflow_run_url}"
