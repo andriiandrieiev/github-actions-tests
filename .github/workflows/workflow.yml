@@ -20,6 +20,9 @@ jobs:
         run: |
           echo "Task 2"
   job3:
+    needs: 
+    - job1
+    - job2
     runs-on: ubuntu-latest
     steps:
       - name: Task 3
