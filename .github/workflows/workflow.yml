@@ -23,14 +23,14 @@ jobs:
         run: |
           echo "Task 3"
 
-      - name: Send notification on fail
-        id: notification
-        if: always()
-        # if: always() && steps.task2.conclusion == 'failure'
-        run: |
-          echo "$OUTPUT"
-        env:
-          OUTPUT: ${{ steps.task2.outputs }}
+      # - name: Send notification on fail
+      #   id: notification
+      #   if: always()
+      #   # if: always() && steps.task2.conclusion == 'failure'
+      #   run: |
+      #     echo "$OUTPUT"
+      #   env:
+      #     OUTPUT: ${{ steps.task2.outputs }}
 
       - name: Get Workflow Run Link
         run: |
