@@ -27,6 +27,9 @@ jobs:
 
       - name: Send notification on fail
         id: notification
-        if: steps.task2.conclusion == 'failure'
+        if: always()
+        # if: steps.task2.conclusion == 'failure'
         run: |
-          echo "TASK 2 WAS FAILED"
+          echo "OUTPUT=$OUTPUT"
+        env:
+          OUTPUT: ${{ steps.task2 }}
