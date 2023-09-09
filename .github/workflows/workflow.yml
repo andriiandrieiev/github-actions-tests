@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Task 3
+        if: always()
         id: task3
         run: |
           echo "Task 3"
