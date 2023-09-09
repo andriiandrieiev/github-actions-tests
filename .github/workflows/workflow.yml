@@ -5,36 +5,52 @@ on:
   push:
 
 jobs:
-  fail_test_workflow:
+  job1:
     runs-on: ubuntu-latest
     steps:
-
       - name: Task 1
         id: task1
         run: |
           echo "Task 1"
-
+  job2:
+    runs-on: ubuntu-latest
+    steps:
       - name: Task 2
         id: task2
         run: |
-          echo "::set-output name=my_output::This is the output of Task 2"
           echo "Task 2"
-          echo "Task 2"
-          echo "Task 2"
-          echo "Task 2"
-          echo "Task 2"
-          exit 2
-
+  job3:
+    runs-on: ubuntu-latest
+    steps:
       - name: Task 3
         id: task3
         run: |
           echo "Task 3"
 
-      - name: Send notification on fail
-        id: notification
-        # if: always()
-        if: always() && steps.task2.conclusion == 'failure'
-        run: |
-          echo "$OUTPUT"
-        env:
-          OUTPUT: ${{ steps.task2.outputs.my_output }}
+
+
+
+      # - name: Task 2
+      #   id: task2
+      #   run: |
+      #     echo "::set-output name=my_output::This is the output of Task 2"
+      #     echo "Task 2"
+      #     echo "Task 2"
+      #     echo "Task 2"
+      #     echo "Task 2"
+      #     echo "Task 2"
+      #     exit 2
+
+      # - name: Task 3
+      #   id: task3
+      #   run: |
+      #     echo "Task 3"
+
+      # - name: Send notification on fail
+      #   id: notification
+      #   # if: always()
+      #   if: always() && steps.task2.conclusion == 'failure'
+      #   run: |
+      #     echo "$OUTPUT"
+      #   env:
+      #     OUTPUT: ${{ steps.task2.outputs.my_output }}
