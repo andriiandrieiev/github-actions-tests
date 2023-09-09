@@ -12,51 +12,22 @@ jobs:
         id: task1
         run: |
           echo "Task 1"
-  job2:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Task 2
         id: task2
         run: |
           echo "Task 2"
-          exit 1
-  job3:
-    needs: 
-    - job1
-    - job2
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
+
       - name: Task 3
-        if: always()
         id: task3
         run: |
           echo "Task 3"
 
-
-
-
-      # - name: Task 2
-      #   id: task2
-      #   run: |
-      #     echo "::set-output name=my_output::This is the output of Task 2"
-      #     echo "Task 2"
-      #     echo "Task 2"
-      #     echo "Task 2"
-      #     echo "Task 2"
-      #     echo "Task 2"
-      #     exit 2
-
-      # - name: Task 3
-      #   id: task3
-      #   run: |
-      #     echo "Task 3"
-
-      # - name: Send notification on fail
-      #   id: notification
-      #   # if: always()
-      #   if: always() && steps.task2.conclusion == 'failure'
-      #   run: |
-      #     echo "$OUTPUT"
-      #   env:
-      #     OUTPUT: ${{ steps.task2.outputs.my_output }}
+      - name: Send notification on fail
+        id: notification
+        if: always()
+        # if: always() && steps.task2.conclusion == 'failure'
+        run: |
+          echo "$OUTPUT"
+        env:
+          OUTPUT: ${{ steps.task2.outputs }}
