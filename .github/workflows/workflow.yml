@@ -19,6 +19,7 @@ jobs:
         id: task2
         run: |
           echo "Task 2"
+          exit 1
   job3:
     needs: 
     - job1
