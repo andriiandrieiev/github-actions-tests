@@ -15,11 +15,20 @@ jobs:
         with:
           payload: |
             {
-              "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\nCommit: ${{ github.sha }}\nResult: ${{ job.status }}\nURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  }
+                }
+              ]
             }
           # payload: |
           #   {
-          #     "text": "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${JOB_STATUS}\nURL: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          #     "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\nCommit: ${{ github.sha }}\nWorkflow result: ${{ job.status }}\nSmoketests result: ${{ steps.slack.conclusion }}\nURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           #   }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
