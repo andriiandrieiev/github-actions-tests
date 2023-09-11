@@ -13,25 +13,27 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          payload: |
-            {
-              "attachments": [
-                {
-                  "color": "dbab09",
-                  "fields": [
-                    {
-                      "title": "Smoketests",
-                      "short": false,
-                      "value": "In Progress"
-                    }
-                  ]
-                }
-              ]
-            }
           # payload: |
           #   {
-          #     "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\nCommit: ${{ github.sha }}\nWorkflow result: ${{ job.status }}\nSmoketests result: ${{ steps.slack.conclusion }}\nURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          #     "text": "Deployment started (In Progress)",
+          #     "attachments": [
+          #       {
+          #         "pretext": "Deployment started",
+          #         "color": "dbab09",
+          #         "fields": [
+          #           {
+          #             "title": "Status",
+          #             "short": true,
+          #             "value": "In Progress"
+          #           }
+          #         ]
+          #       }
+          #     ]
           #   }
+          payload: |
+            {
+              "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\nCommit: ${{ github.sha }}\nWorkflow result: ${{ job.status }}\nSmoketests result: ${{ steps.slack.conclusion }}\nURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
