@@ -15,7 +15,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "*Smoketests were failed*",
+              "text": "*VyOS nightly build has failed*",
               "attachments": [
                 {
                   "color": "FF0000",
@@ -39,6 +39,11 @@ jobs:
                       "title": "Commit",
                       "short": true,
                       "value": "${{ github.sha }}"
+                    },
+                    {
+                      "title": "Smoketests result",
+                      "short": true,
+                      "value": "${{ steps.slack.conclusion }}"
                     },
                     {
                       "title": "URL",
