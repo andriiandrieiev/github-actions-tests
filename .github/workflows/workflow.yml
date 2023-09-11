@@ -15,7 +15,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "Smoketest failed",
+              "text": "*Smoketests were failed*",
               "attachments": [
                 {
                   "color": "FF0000",
