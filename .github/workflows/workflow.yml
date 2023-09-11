@@ -15,7 +15,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\Commit: ${{ github.sha }}"
+              "text": "Repository: *${{ github.repository }}*\nWorkflow: ${{ github.workflow }}\nTrigger: ${{ github.event_name }}\nCommit: ${{ github.sha }}\nResult: ${{ job.status }}\nURL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
           # payload: |
           #   {
