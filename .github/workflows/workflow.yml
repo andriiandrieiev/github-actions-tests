@@ -15,10 +15,10 @@ jobs:
         with:
           payload: |
             {
+              "text": "Smoketest failed",
               "attachments": [
                 {
-                  "pretext": "Deployment started",
-                  "color": "dbab09",
+                  "color": "FF0000",
                   "fields": [
                     {
                       "title": "Repository",
