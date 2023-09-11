@@ -15,7 +15,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}"
+              "text": "Repository: ${{ github.repository }}\nWorkflow: ${{ github.workflow }}"
             }
           # payload: |
           #   {
@@ -24,8 +24,6 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-          JOB_STATUS: ${{ job.status }}
-          GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
 
 
           # {
