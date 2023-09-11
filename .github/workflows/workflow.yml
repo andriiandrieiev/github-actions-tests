@@ -29,19 +29,16 @@ jobs:
                       "title": "Workflow",
                       "short": true,
                       "value": "${{ github.workflow }}"
-                    }
                     },
                     {
                       "title": "Trigger",
                       "short": true,
                       "value": "${{ github.event_name }}"
-                    }
                     },
                     {
                       "title": "Commit",
                       "short": true,
                       "value": "${{ github.sha }}"
-                    }
                     },
                     {
                       "title": "URL",
