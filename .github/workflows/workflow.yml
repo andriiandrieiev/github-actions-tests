@@ -34,4 +34,6 @@ jobs:
 
       - name: Get Workflow Run Link
         run: |
-          echo "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${{ job.status }}\n$URL: {GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          echo  "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${JOB_STATUS}\nURL: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+        env:
+          JOB_STATUS: ${{ job.status }}
