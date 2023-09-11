@@ -15,7 +15,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}"
+              "text": "Repository: ${{ env.GITHUB_REPOSITORY }}\nWorkflow: ${{ env.GITHUB_WORKFLOW }}"
             }
           # payload: |
           #   {
