@@ -8,32 +8,16 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Task 1
-        id: task1
-        run: |
-          echo "Task 1"
 
-      - name: Task 2
-        id: task2
-        run: |
-          echo "Task 2"
-
-      - name: Task 3
-        id: task3
-        run: |
-          echo "Task 3"
-
-      # - name: Send notification on fail
-      #   id: notification
-      #   if: always()
-      #   # if: always() && steps.task2.conclusion == 'failure'
-      #   run: |
-      #     echo "$OUTPUT"
-      #   env:
-      #     OUTPUT: ${{ steps.task2.outputs }}
-
-      - name: Get Workflow Run Link
-        run: |
-          echo  "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${JOB_STATUS}\nURL: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+      - name: Send Slack notification on fail
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "Repository: ${GITHUB_REPOSITORY}\nWorkflow: ${GITHUB_WORKFLOW}\nTrigger: ${GITHUB_EVENT_NAME}\Commit: ${GITHUB_SHA}\nResult: ${JOB_STATUS}\nURL: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            }
         env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
           JOB_STATUS: ${{ job.status }}
