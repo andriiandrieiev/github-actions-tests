@@ -1,6 +1,6 @@
-'
-{
-  "name":"jsdaniell",
-  "password":"mypass"
-}
-'
+[
+  {
+    "url": "https://github.com/vyos/vyos-rolling-nightly-builds/releases/download/1.5-rolling-202312191616/1.5-rolling-202312191616-amd64.iso"
+    "version": "1.5-rolling-202312190024"
+  }
+]
