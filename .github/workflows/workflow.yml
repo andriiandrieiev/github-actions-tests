@@ -23,15 +23,13 @@ jobs:
         with:
           name: "new-json-file.json"
           json: |
-            '
-            {
-              "name":"jsdaniell",
-              "password":"mypass"
-            }
-            '
+            [
+              {
+                "url": "https://github.com/vyos/vyos-rolling-nightly-builds/releases/download/${{ env.VYOS_VERSION }}/${{ env.VYOS_VERSION }}-amd64.iso"
+                "version": "1.5-rolling-202312190024"
+              }
+            ]
 
-      # - run: |
-      #     jq '.' new-json-file.json > new-json-file.json
 
       - name: Create autocommit and tag
         uses: stefanzweifel/git-auto-commit-action@v4
