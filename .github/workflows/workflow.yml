@@ -24,6 +24,9 @@ jobs:
           name: "new-json-file.json"
           json: '{"name":"jsdaniell", "password":"mypass"}'
 
+      - run: |
+          jq '.' new-json-file.json > new-json-file.json
+
       - name: Create autocommit and tag
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
