@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       SKIP_SMOKETEST:
-        description: 'False to skip smoketest'
+        description: 'Skip smoketest'
         required: true
         type: boolean
         default: false
@@ -13,8 +13,10 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    concurrency:
+      group: main
     steps:
 
       - run: |
-          echo SMOKETEST
+          sleep 1000
         if:  ${{ !inputs.SKIP_SMOKETEST }} 
