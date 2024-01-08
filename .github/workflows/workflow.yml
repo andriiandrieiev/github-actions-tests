@@ -19,3 +19,14 @@ jobs:
       - run: |
           echo ${{ github.event.inputs.BUILD_BY }}
           echo ${{ github.event.inputs.BUILD_VERSION }}
+
+          if [ -z "${{ github.event.inputs.BUILD_BY }}" ]; then
+            echo "BUILD_BY=1.5-rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
+          fi
+          if [ -z "${{ github.event.inputs.BUILD_VERSION }}" ]; then
+            echo "BUILD_VERSION=1.5-rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
+          fi
+
+          echo ${{ env.BUILD_VERSION }}
+          echo ${{ env.BUILD_VERSION }}
+
