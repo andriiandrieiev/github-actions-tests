@@ -4,8 +4,8 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      SKIP_SMOKETEST:
-        description: 'Skip smoketest'
+      SKIP_SMOKETEST_RAID1:
+        description: 'Skip RAID1 smoketest'
         required: true
         type: boolean
         default: false
@@ -13,10 +13,15 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    concurrency:
-      group: main
     steps:
 
       - run: |
-          sleep 1000
-        if:  ${{ !inputs.SKIP_SMOKETEST }} 
+          if [ -z "${{ github.event.inputs.SKIP_SMOKETEST_RAID1 }}" ]; then
+            echo "SMOKETEST_RAID_COMMAND='RAID TEST!'" >> $GITHUB_ENV
+          else
+            echo "SMOKETEST_RAID_COMMAND='DO" >> $GITHUB_ENV
+          fi
+      - run: |
+          echo $SMOKETEST_RAID_COMMAND
+
+  #### if:  ${{ !inputs.SKIP_SMOKETEST_RAID1 }} 
