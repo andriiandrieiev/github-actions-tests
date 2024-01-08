@@ -16,7 +16,7 @@ jobs:
     steps:
 
       - run: |
-          date
+          dateasdasdasdasd
       - run: |
           echo $SMOKETEST_RAID_COMMAND
         if:  failure() && !inputs.SKIP_SMOKETEST_RAID1 
