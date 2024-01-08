@@ -31,6 +31,7 @@ jobs:
             echo "BUILD_VERSION='${{ github.event.inputs.BUILD_VERSION }}'" >> $GITHUB_ENV
           fi
 
+      - run: |
           echo ${{ env.BUILD_BY }}
           echo ${{ env.BUILD_VERSION }}
 
