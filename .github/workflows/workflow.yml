@@ -18,3 +18,4 @@ jobs:
     steps:
       - run: |
           echo ${{ github.event.inputs.BUILD_BY }}
+          echo ${{ github.event.inputs.BUILD_VERSION }}
