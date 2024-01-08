@@ -2,7 +2,13 @@ name: Fail test workflow
 
 on:
   workflow_dispatch:
-  push:
+    inputs:
+      BUILD_BY:
+        description: 'Builder identifier (e.g. jrandomhacker@example.net)'
+        default: 'autobuild@vyos.net'
+        required: true
+      BUILD_VERSION:
+        description: 'Version number (if empty 1.4-rolling-DATE is used)'
 
 jobs:
   job1:
@@ -10,29 +16,5 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Set VyOS version
-        id: set_vyos_version
-        run: |
-          echo "VYOS_VERSION=1.5-rolling-$(date -u +%Y%m%d%H%M)" >> $GITHUB_ENV
-
-      - uses: actions/checkout@v3
-
-      - name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@v1.2.2
-        with:
-          name: "new-json-file.json"
-          json: |
-            [
-              {
-                "url": "https://github.com/vyos/vyos-rolling-nightly-builds/releases/download/${{ env.VYOS_VERSION }}/${{ env.VYOS_VERSION }}-amd64.iso"
-                "version": "1.5-rolling-202312190024"
-              }
-            ]
-
-
-      - name: Create autocommit and tag
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          tagging_message: ${{ env.VYOS_VERSION }}
-          commit_message: ${{ env.VYOS_VERSION }}
+      - run: |
+          echo ${{ github.event.inputs.BUILD_BY }}
