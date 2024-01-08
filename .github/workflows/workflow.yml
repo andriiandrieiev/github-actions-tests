@@ -19,4 +19,4 @@ jobs:
           date
       - run: |
           echo $SMOKETEST_RAID_COMMAND
-        if:  failure() && ${{ !inputs.SKIP_SMOKETEST_RAID1 }} 
+        if:  failure() && !inputs.SKIP_SMOKETEST_RAID1 
