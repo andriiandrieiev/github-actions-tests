@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      DO_SMOKETEST:
+      SKIP_SMOKETEST:
         description: 'False to skip smoketest'
         required: true
         type: boolean
@@ -17,4 +17,4 @@ jobs:
 
       - run: |
           echo SMOKETEST
-        if:  ${{ inputs.DO_SMOKETEST }} 
+        if:  ${{ !inputs.SKIP_SMOKETEST }} 
