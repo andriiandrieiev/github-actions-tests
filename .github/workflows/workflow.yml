@@ -16,12 +16,7 @@ jobs:
     steps:
 
       - run: |
-          if [ -z "${{ github.event.inputs.SKIP_SMOKETEST_RAID1 }}" ]; then
-            echo "SMOKETEST_RAID_COMMAND='RAID TEST!'" >> $GITHUB_ENV
-          else
-            echo "SMOKETEST_RAID_COMMAND=''" >> $GITHUB_ENV
-          fi
+          date
       - run: |
           echo $SMOKETEST_RAID_COMMAND
-
-  #### if:  ${{ !inputs.SKIP_SMOKETEST_RAID1 }} 
+        if:  failure() && ${{ !inputs.SKIP_SMOKETEST_RAID1 }} 
