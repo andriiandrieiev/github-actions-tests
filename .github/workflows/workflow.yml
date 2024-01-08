@@ -8,7 +8,7 @@ on:
         default: 'autobuild@vyos.net'
       BUILD_VERSION:
         description: 'Version number (if empty 1.5-rolling-DATE is used)'
-        default: '1.5-rolling-DATE'
+        default: ''
 
 jobs:
   job1:
