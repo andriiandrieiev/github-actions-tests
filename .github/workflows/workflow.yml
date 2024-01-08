@@ -7,7 +7,7 @@ on:
         description: 'Builder identifier (if empty autobuild@vyos.net is used)'
         default: 'autobuild@vyos.net'
       BUILD_VERSION:
-        description: 'Version number (if empty 1.5-rolling-DATE is used)'
+        description: 'Version number (if empty 1.5-rolling-$(date -u +%Y%m%d%H%M) is used)'
         default: ''
 
 jobs:
