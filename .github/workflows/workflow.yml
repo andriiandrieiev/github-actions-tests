@@ -16,12 +16,5 @@ jobs:
     steps:
 
       - run: |
-          echo ${{ inputs.DO_SMOKETEST }} 
-
-      - run: |
-          echo TEST 111
+          echo SMOKETEST
         if:  ${{ inputs.DO_SMOKETEST }} 
-
-      - run: |
-          echo TEST 222
-        if:  ${{ !inputs.DO_SMOKETEST }} 
