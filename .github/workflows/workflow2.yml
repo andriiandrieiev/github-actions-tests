@@ -10,14 +10,17 @@ jobs:
 
     steps:
       - name: Step 1
-        run: echo "This is step 1"
+        run: |
+          true
 
       - name: Step 2
-        run: exit 1  # This step will intentionally fail
+        run: |
+          false  # This step will intentionally fail
         continue-on-error: true
 
       - name: Step 3
-        run: echo "This is step 3"
+        run: |
+          true
 
       - name: Capture failed step
         if: failure() 
