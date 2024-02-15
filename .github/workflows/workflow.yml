@@ -1,22 +1,23 @@
-name: Fail test workflow
+name: Workflow
 
 on:
   push:
   workflow_dispatch:
-    inputs:
-      SKIP_SMOKETEST_RAID1:
-        description: 'Skip RAID1 smoketest'
-        required: true
-        type: boolean
-        default: false
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
 
+      - name: One
+        run: |
+          true
+      - name: Two
+        run: |
+          false
+      - name: Three
+        run: |
+          true
       - run: |
-          dateasdasdasdasd
-      - run: |
-          echo $SMOKETEST_RAID_COMMAND
-        if:  failure() && !inputs.SKIP_SMOKETEST_RAID1 
+          echo FAILED
+        if:  failure()

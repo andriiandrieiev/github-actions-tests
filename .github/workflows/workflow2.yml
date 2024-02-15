@@ -1,0 +1,27 @@
+name: Workflow 2
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1
+        run: echo "This is step 1"
+
+      - name: Step 2
+        run: exit 1  # This step will intentionally fail
+
+      - name: Step 3
+        run: echo "This is step 3"
+
+  report_failure:
+    runs-on: ubuntu-latest
+    if: failure()
+
+    steps:
+      - name: Get failed step name
+        run: echo "The last failed step was ${{ failure().step }}"
