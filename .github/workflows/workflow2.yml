@@ -24,4 +24,4 @@ jobs:
       - name: Capture failed step
         if: failure() 
         run: |
-          echo "${{ github.job }}"
+          echo "${{ github }}"
