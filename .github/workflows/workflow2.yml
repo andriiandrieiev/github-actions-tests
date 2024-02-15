@@ -15,8 +15,7 @@ jobs:
 
       - name: Step 2
         run: |
-          false  # This step will intentionally fail
-        continue-on-error: true
+          false
 
       - name: Step 3
         run: |
