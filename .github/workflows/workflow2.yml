@@ -28,6 +28,9 @@ jobs:
         if: failure() 
         run: |
           echo '${{ toJson(github) }}' > github-context.json
+          cat '${{ github.step_summary }}'
+          cat '${{ github.state }}'
+          cat '${{ github.output }}'
 
       - name: Create Artifact
         if: failure() 
