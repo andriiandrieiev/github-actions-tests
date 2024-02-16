@@ -18,6 +18,7 @@ jobs:
         id: step2
         run: |
           false
+        continue-on-error: true
 
       - name: Step 3
         id: step3
