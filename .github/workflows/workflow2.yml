@@ -30,10 +30,13 @@ jobs:
           scp: |
             './date.txt' => '/tmp/'
           last_ssh: |
-            cat /tmp/date.txt
+            echo "SMOKETEST_OUTPUT=${cat /tmp/date.txt}" >> "$GITHUB_OUTPUT"
             false
 
       - name: failure
         if: failure()
         run: |
-          echo '${{ toJson(steps) }}' 
+          echo ${{ steps.run_smoketest.outputs.SMOKETEST_OUTPUT }}
+
+
+  #           echo '${{ toJson(steps) }}' 
