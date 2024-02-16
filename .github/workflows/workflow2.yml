@@ -24,6 +24,17 @@ jobs:
         run: |
           true
 
+      - run: |
+          false
+
+      - name: Step 5
+        run: |
+          false
+
+      - id: step6
+        run: |
+          true
+
       - name: Capture failed step
         if: failure() 
         run: |
