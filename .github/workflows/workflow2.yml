@@ -27,4 +27,11 @@ jobs:
       - name: Capture failed step
         if: failure() 
         run: |
-          echo '${{ toJson(github) }}'
+          echo '${{ toJson(github) }}' > github-context.json
+
+      - name: Create Artifact
+        if: failure() 
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-context.json
+          path: github-context.json
