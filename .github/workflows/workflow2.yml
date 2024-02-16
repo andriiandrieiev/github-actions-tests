@@ -27,7 +27,9 @@ jobs:
 
       - id: apt_step
         run: |
-          apt instal kjsahdfksahfk -y
+          echo "STDOUT!"
+          echo "STDERR!" >&2
+          exit 1
 
       - name: Step 5
         run: |
