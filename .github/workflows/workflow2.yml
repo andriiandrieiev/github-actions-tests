@@ -25,9 +25,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           connect_timeout: 999s
-          # first_ssh: |
-          #   cat /tmp/date.txt || true
+          first_ssh: |
+            rm -rf /tmp/date.txt
           scp: |
-            './date.txt' => '/tmp/date.txt'
+            './date.txt' => '/tmp/'
           last_ssh: |
             cat /tmp/date.txt
