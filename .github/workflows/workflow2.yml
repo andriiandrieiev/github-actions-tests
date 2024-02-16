@@ -27,7 +27,7 @@ jobs:
       - name: Capture failed step
         if: failure() 
         run: |
-          echo '${{ toJson(jobs) }}' > github-context.json
+          echo '${{ toJson(job) }}' > github-context.json
 
       - name: Create Artifact
         if: failure() 
