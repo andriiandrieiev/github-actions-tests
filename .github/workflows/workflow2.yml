@@ -12,56 +12,22 @@ jobs:
       - name: Step 1
         id: step1
         run: |
-          true
+          echo date > date.txt
 
-      - name: Step 2
-        id: step2
-        run: |
-          false
-        continue-on-error: true
-
-      - name: Step 3
-        id: step3
-        run: |
-          true
-
-      - id: apt_step
-        run: |
-          echo "::group::My title"
-          echo "STDOUT!"
-          echo "STDERR!" >&2
-          exit 1
-          echo "::endgroup::"
-
-      - name: Step 5
-        run: |
-          false
-
-      - id: step6
-        run: |
-          true
-
-      - name: Capture failed step
-        if: failure() 
-        run: |
-          echo '${{ toJson(steps) }}' > steps.json
-          echo '${{ toJson(github) }}' > github.json
-
-      - name: Create Artifact
-        if: failure() 
-        uses: actions/upload-artifact@v2
+      - name: Run Smoketest
+        id: run_smoketest
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        env:
+          BUILD_VERSION: ${{ env.BUILD_VERSION }}
         with:
-          name: github.json
-          path: github.json
-      # - name: Create Artifact
-      #   if: failure() 
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: job.json
-      #     path: job.json
-      - name: Create Artifact
-        if: failure() 
-        uses: actions/upload-artifact@v2
-        with:
-          name: steps.json
-          path: steps.json
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          connect_timeout: 999s
+          first_ssh: |
+            cat /tmp/date.txt
+          scp: |
+            './date.txt' => '/tmp/date.txt'
+          last_ssh: |
+            cat /tmp/date.txt
