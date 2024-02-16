@@ -31,3 +31,9 @@ jobs:
             './date.txt' => '/tmp/'
           last_ssh: |
             cat /tmp/date.txt
+            false
+
+      - name: failure
+        if: failure()
+        run: |
+          echo '${{ toJson(github) }}' 
