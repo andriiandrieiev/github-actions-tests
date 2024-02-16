@@ -36,4 +36,4 @@ jobs:
       - name: failure
         if: failure()
         run: |
-          echo '${{ toJson(github) }}' 
+          echo '${{ toJson(steps) }}' 
