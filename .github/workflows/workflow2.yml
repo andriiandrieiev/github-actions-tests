@@ -27,9 +27,11 @@ jobs:
 
       - id: apt_step
         run: |
+          echo "::group::My title"
           echo "STDOUT!"
           echo "STDERR!" >&2
           exit 1
+          echo "::endgroup::"
 
       - name: Step 5
         run: |
