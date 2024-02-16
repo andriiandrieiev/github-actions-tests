@@ -43,6 +43,8 @@ jobs:
         if: failure() 
         run: |
           echo '${{ toJson(steps) }}' | jq '.'
+          echo '${{ toJson(github) }}' | jq '.'
+          echo '${{ toJson(job) }}' | jq '.'
 
       # - name: Create Artifact
       #   if: failure() 
