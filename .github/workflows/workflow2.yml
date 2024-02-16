@@ -31,32 +31,30 @@ jobs:
         run: |
           false
 
-      - id: asd asd asd
+      - id: step6
         run: |
           true
 
       - name: Capture failed step
         if: failure() 
         run: |
-          echo '${{ toJson(github) }}' > github.json
-          echo '${{ toJson(job) }}' > job.json
-          echo '${{ toJson(steps) }}' > steps.json
+          echo '${{ toJson(steps) }}' | jq '.'
 
-      - name: Create Artifact
-        if: failure() 
-        uses: actions/upload-artifact@v2
-        with:
-          name: github.json
-          path: github.json
-      - name: Create Artifact
-        if: failure() 
-        uses: actions/upload-artifact@v2
-        with:
-          name: job.json
-          path: job.json
-      - name: Create Artifact
-        if: failure() 
-        uses: actions/upload-artifact@v2
-        with:
-          name: steps.json
-          path: steps.json
+      # - name: Create Artifact
+      #   if: failure() 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: github.json
+      #     path: github.json
+      # - name: Create Artifact
+      #   if: failure() 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: job.json
+      #     path: job.json
+      # - name: Create Artifact
+      #   if: failure() 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: steps.json
+      #     path: steps.json
