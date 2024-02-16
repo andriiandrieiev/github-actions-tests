@@ -25,7 +25,8 @@ jobs:
         run: |
           true
 
-      - run: |
+      - id: apt_step
+        run: |
           apt instal kjsahdfksahfk -y
 
       - name: Step 5
