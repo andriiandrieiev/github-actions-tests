@@ -14,24 +14,24 @@ jobs:
         run: |
           echo date > date.txt
 
-      - name: Run Smoketest
-        id: run_smoketest
-        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        env:
-          BUILD_VERSION: ${{ env.BUILD_VERSION }}
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_KEY }}
-          connect_timeout: 999s
-          first_ssh: |
-            rm -rf /tmp/date.txt
-          scp: |
-            './date.txt' => '/tmp/'
-          last_ssh: |
-            echo "SMOKETEST_OUTPUT=${cat /tmp/date.txt}" >> "$GITHUB_OUTPUT"
-            #false
+      # - name: Run Smoketest
+      #   id: run_smoketest
+      #   uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      #   env:
+      #     BUILD_VERSION: ${{ env.BUILD_VERSION }}
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     user: ${{ secrets.SSH_USER }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     key: ${{ secrets.SSH_KEY }}
+      #     connect_timeout: 999s
+      #     first_ssh: |
+      #       rm -rf /tmp/date.txt
+      #     scp: |
+      #       './date.txt' => '/tmp/'
+      #     last_ssh: |
+      #       echo "SMOKETEST_OUTPUT=${cat /tmp/date.txt}" >> "$GITHUB_OUTPUT"
+      #       #false
 
       - name: multiple command
         uses: appleboy/ssh-action@v1.0.3
@@ -44,9 +44,9 @@ jobs:
             whoami
             ls -al
 
-      - name: failure
-        if: failure()
-        run: |
-          echo ${{ toJson(steps) }}
+      # - name: failure
+      #   if: failure()
+      #   run: |
+      #     echo ${{ toJson(steps) }}
 
 
