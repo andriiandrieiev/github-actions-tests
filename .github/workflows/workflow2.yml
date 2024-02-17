@@ -31,12 +31,22 @@ jobs:
             './date.txt' => '/tmp/'
           last_ssh: |
             echo "SMOKETEST_OUTPUT=${cat /tmp/date.txt}" >> "$GITHUB_OUTPUT"
-            false
+            #false
+
+      - name: multiple command
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            whoami
+            ls -al
 
       - name: failure
         if: failure()
         run: |
-          echo ${{ steps.run_smoketest.outputs.SMOKETEST_OUTPUT }}
+          echo ${{ toJson(steps) }}
 
 
-  #           echo '${{ toJson(steps) }}' 
