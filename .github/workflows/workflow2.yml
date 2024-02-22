@@ -9,44 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Step 1
-        id: step1
-        run: |
-          echo date > date.txt
+      - run: |
+          echo 'Please ignore this' > notification_test.txt
 
-      # - name: Run Smoketest
-      #   id: run_smoketest
-      #   uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-      #   env:
-      #     BUILD_VERSION: ${{ env.BUILD_VERSION }}
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     user: ${{ secrets.SSH_USER }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     key: ${{ secrets.SSH_KEY }}
-      #     connect_timeout: 999s
-      #     first_ssh: |
-      #       rm -rf /tmp/date.txt
-      #     scp: |
-      #       './date.txt' => '/tmp/'
-      #     last_ssh: |
-      #       echo "SMOKETEST_OUTPUT=${cat /tmp/date.txt}" >> "$GITHUB_OUTPUT"
-      #       #false
-
-      - name: multiple command
-        uses: appleboy/ssh-action@v1.0.3
+      - uses: MeilCli/slack-upload-file@v4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            whoami
-            ls -al
-
-      # - name: failure
-      #   if: failure()
-      #   run: |
-      #     echo ${{ toJson(steps) }}
-
-
+          slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          file_path: notification_test.txt
+          initial_comment: Smoketest log excerpt
+          if_no_files_found: ignore
