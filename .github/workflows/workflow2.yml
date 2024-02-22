@@ -10,12 +10,6 @@ jobs:
 
     steps:
       - run: |
-          echo 'Please ignore this' > notification_test.txt
-
-      - uses: MeilCli/slack-upload-file@v4
-        with:
-          slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          file_path: notification_test.txt
-          initial_comment: Smoketest log excerpt
-          if_no_files_found: ignore
+          echo "${{ secrets.multiline }}"
+          echo "${{ secrets.multiline }}" > test.txt
+          cat test.txt
